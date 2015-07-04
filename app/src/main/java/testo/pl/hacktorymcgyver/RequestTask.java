@@ -33,10 +33,10 @@ import java.util.List;
  */
 public class RequestTask extends AsyncTask<String, Integer, Double> {
 
-    private Context context;
+    private Activity activity;
 
-    public RequestTask(Context _context) {
-        context = _context;
+    public RequestTask(Activity activity) {
+        this.activity = activity;
     }
 
     @Override
@@ -47,8 +47,14 @@ public class RequestTask extends AsyncTask<String, Integer, Double> {
     }
 
     protected void onPostExecute(Double result) {
-        Toast.makeText(context, "command sent",
-                Toast.LENGTH_LONG).show();
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(activity, "Beacon thrown!",
+                        Toast.LENGTH_LONG).show();
+
+            }
+        });
     }
 
     protected void onProgressUpdate(Integer... progress) {

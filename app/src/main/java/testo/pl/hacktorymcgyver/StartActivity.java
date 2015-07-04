@@ -1,5 +1,6 @@
 package testo.pl.hacktorymcgyver;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -8,23 +9,39 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
+
 
 public class StartActivity extends ActionBarActivity {
-    Intent intent;
+    Intent mainActivityIntent;
+    Intent highScoreActivityIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         Button b = (Button) findViewById(R.id.btn);
-        intent = new Intent(this, MainActivity.class);
+        Button high = (Button) findViewById(R.id.highscore_btn);
+        mainActivityIntent = new Intent(this, MainActivity.class);
+        highScoreActivityIntent = new Intent(this, HighscoreActivity.class);
 
+        Config.highScores = new ArrayList<>();
+        Config.highScores.add(new Record("Paulina", "1000"));
+        Config.highScores.add(new Record("Mateusz", "800"));
+        Config.highScores.add(new Record("Mariusz", "600"));
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(intent);
+                startActivity(mainActivityIntent);
             }
         });
+        high.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(highScoreActivityIntent);
+            }
+        });
+
     }
 
 
