@@ -15,15 +15,26 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="item"
+            android:paddingRight="100sp"
             android:id="@+id/list_favourites_item_textview" />
+
+        <TextView
+            android:paddingLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="item"
+            android:id="@+id/result"
+            android:layout_toLeftOf="@+id/list_favourites_item_imageview" />
 
         <ImageView
             android:id="@+id/list_favourites_item_imageview"
             android:paddingLeft="10dp"
             android:layout_alignParentRight="true"
-            android:layout_width="wrap_content"
-            android:minHeight="35sp"
-            android:minWidth="35sp"
-            android:layout_height="wrap_content" />
+            android:layout_width="50sp"
+            android:src="@drawable/cart"
+            android:maxHeight="35sp"
+            android:maxWidth="35sp"
+            android:layout_height="50sp" />
     </RelativeLayout>
 </LinearLayout>

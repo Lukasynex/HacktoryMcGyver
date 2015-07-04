@@ -28,6 +28,8 @@ public class StartActivity extends ActionBarActivity {
         Config.highScores = new ArrayList<>();
         Config.highScores.add(new Record("Paulina", "1000"));
         Config.highScores.add(new Record("Mateusz", "800"));
+        Config.highScores.add(new Record("Nat", "900"));
+        Config.highScores.add(new Record("Lukasz", "1100"));
         Config.highScores.add(new Record("Mariusz", "600"));
         b.setOnClickListener(new View.OnClickListener() {
             @Override

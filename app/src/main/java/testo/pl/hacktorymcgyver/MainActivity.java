@@ -38,10 +38,10 @@ public class MainActivity extends ActionBarActivity {
     public static float dotPositionY = 100;
     public static boolean moveToLeft = false;
     public static boolean moveToUp = false;
-    public static final int MIN = 20;
-    public static final int MAX = 400;
-    public static final int MIN_h = 20;
-    public static final int MAX_h = 800;
+    public static final int MIN = 50;
+    public static final int MAX = 350;
+    public static final int MIN_h = 50;
+    public static final int MAX_h = 700;
 
 
     @Override
@@ -74,10 +74,9 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        Looper.start(this, 2);
+        Looper.start(this, 4);
     }
-
-    private static final int step = 5;
+    private static final int step = 20;
 
     private void makePostRequest(String value) {
 

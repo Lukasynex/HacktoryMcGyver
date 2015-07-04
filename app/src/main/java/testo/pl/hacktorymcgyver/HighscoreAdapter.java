@@ -9,7 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Lukasz Marczak on 2015-06-22.
@@ -23,7 +28,8 @@ public class HighscoreAdapter extends RecyclerView.Adapter<HighscoreAdapter.View
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public View v;
         public TextView dataName;
-        public ImageView isFavourite;
+        public TextView dataResult;
+        public ImageView beaconIcon;
 
 
         public ViewHolder(View v) {
@@ -46,6 +52,32 @@ public class HighscoreAdapter extends RecyclerView.Adapter<HighscoreAdapter.View
     public HighscoreAdapter(Context parent) {
         context = parent;
         mDataset = Config.getHighScores();
+        Collections.sort(mDataset, new Comparator<Record>() {
+            @Override
+            public int compare(Record fruite1, Record fruite2) {
+
+                return fruite1.compareTo(fruite2);
+            }
+        });
+//        Set<Record> set = new HashSet<>();
+//        Set<Record> valuesSet = new HashSet<>();
+//        List<Record> arr = new ArrayList<>();
+//        ArrayList<String> values = new ArrayList<>();
+//
+//        for (Record rec : mDataset) {
+//            values.add(rec.value);
+//            valuesSet.add(rec);
+//        }
+//
+//        for (Record rec : mDataset) {
+//            set.add(rec);
+//        }
+//
+//        for (Record rec : set) {
+//            arr.add(rec);
+//        }
+//        mDataset = arr;
+
     }
 
     // Create new views (invoked by the layout manager)
@@ -58,7 +90,8 @@ public class HighscoreAdapter extends RecyclerView.Adapter<HighscoreAdapter.View
         //  v.setOnClickListener(new OnSuggestionClickListener());
         ViewHolder vh = new ViewHolder(v);
         vh.dataName = (TextView) v.findViewById(R.id.list_favourites_item_textview);
-        vh.isFavourite = (ImageView) v.findViewById(R.id.list_favourites_item_imageview);
+        vh.dataResult = (TextView) v.findViewById(R.id.result);
+        vh.beaconIcon = (ImageView) v.findViewById(R.id.list_favourites_item_imageview);
         return vh;
     }
 
@@ -68,7 +101,11 @@ public class HighscoreAdapter extends RecyclerView.Adapter<HighscoreAdapter.View
         if (mDataset.size() <= position || mDataset.size() == 0)
             return;
         Record thisRecord = mDataset.get(position);
-        holder.dataName.setText(thisRecord.name + "_____" + thisRecord.value);
+        holder.dataName.setText(thisRecord.name);
+        holder.dataResult.setText(thisRecord.value);
+
+        int imageResource = (thisRecord.name.equals(Config.GREEN_BEACON_NAME)) ? R.drawable.pist : R.drawable.purple;
+        holder.beaconIcon.setImageResource(imageResource);
 
     }
 

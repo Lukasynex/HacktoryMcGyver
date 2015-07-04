@@ -2,6 +2,7 @@ package testo.pl.hacktorymcgyver;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,8 +14,10 @@ public class HighscoreActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_highscore);
-        RecyclerView highscore_list = (RecyclerView)findViewById(R.id.highscore_list);
+        final RecyclerView highscore_list = (RecyclerView) findViewById(R.id.highscore_list);
 
+        LinearLayoutManager myLayoutManager = new LinearLayoutManager(this);
+        highscore_list.setLayoutManager(myLayoutManager);
         highscore_list.setAdapter(new HighscoreAdapter(this));
     }
 
